@@ -1,28 +1,27 @@
-
-operations_count = 0
-
 def main():
+    operations_count = 0
     ask_again = True
-    while(ask_again):
+    while ask_again:
         a = input("Enter the numerator: ")
         b = input("Enter the denominator: ")
-        result = perform_division(a,b)
+        result = perform_division(a, b)
         print(result)
-        ask_again = input("Do you want to perform another operation? Enter yes or no: ")
-        if(ask_again == 'yes'):
+        operations_count += 1
+        response = input("Do you want to perform another operation? Enter yes or no: ")
+        if response == 'yes':
             ask_again = True
         else:
             ask_again = False
             print("You performed " + str(operations_count) + " operations, bye!")
 
 
-def perform_division(a,b):
-    global operations_count
+def perform_division(a, b):
     try:
-        operations_count += 1
-        return int(a)/int(b)
+        return int(a) / int(b)
+    except ZeroDivisionError as e:
+        print(e)
     except Exception as e:
-        pass
+        print("Invalid input")
 
 
 main()
